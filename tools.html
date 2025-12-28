@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Simulasi & Tools | Fin.Journey</title>
+  <meta name="description"
+    content="Fin.Journey adalah platform edukasi literasi keuangan digital: modul fintech, keamanan, regulasi, simulasi & gamifikasi." />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-page="tools">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="home.html" aria-label="Ke Beranda">
+          <img src="assets/logo.svg" alt="Fin.Journey logo" />
+        </a>
+
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:30px">
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> Simulasi & Financial Tools</div>
+
+      <h1 style="margin-top:12px">Latihan keputusan finansial</h1>
+
+      <p id="greetingText" class="subtitle" style="margin-top:10px; font-weight:700;"></p>
+
+      <p class="subtitle">
+        Gunakan simulasi sederhana untuk budgeting, tabungan, dan studi kasus. Hasil disimpan lokal di perangkat kamu.
+      </p>
+
+      <div class="cols-2">
+
+        <!-- ===================== BUDGETING ===================== -->
+        <div class="card pad">
+          <div class="badge">💰 <strong>Simulasi Budgeting</strong></div>
+          <p class="small">
+            Masukkan pemasukan dan alokasi. Sistem akan memberi insight cepat (heuristik 50/30/20 sebagai referensi).
+          </p>
+
+          <form id="budgetForm" class="section" style="padding:12px 0 0">
+            <label class="small"><strong>Pemasukan / bulan (IDR)</strong></label>
+            <input class="btn" style="width:100%; justify-content:flex-start" id="income" inputmode="numeric"
+              placeholder="contoh: 5000000" />
+
+            <div class="cols-3" style="margin-top:10px">
+              <div>
+                <label class="small"><strong>Kebutuhan</strong></label>
+                <input class="btn" style="width:100%; justify-content:flex-start" id="need" inputmode="numeric"
+                  placeholder="contoh: 2500000" />
+              </div>
+
+              <div>
+                <label class="small"><strong>Keinginan</strong></label>
+                <input class="btn" style="width:100%; justify-content:flex-start" id="want" inputmode="numeric"
+                  placeholder="contoh: 1500000" />
+              </div>
+
+              <div>
+                <label class="small"><strong>Tabungan/Investasi</strong></label>
+                <input class="btn" style="width:100%; justify-content:flex-start" id="save" inputmode="numeric"
+                  placeholder="contoh: 1000000" />
+              </div>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="submit">Simpan hasil simulasi</button>
+              <button class="btn" type="button" onclick="addPoints(8,'Konsisten evaluasi budgeting!')">
+                Bonus +8 poin
+              </button>
+            </div>
+          </form>
+
+          <div id="budgetOut" class="section" style="padding:12px 0 0"></div>
+        </div>
+
+        <!-- ===================== TABUNGAN ===================== -->
+        <div class="card pad">
+          <div class="badge">🏦 <strong>Simulasi Tabungan</strong></div>
+          <p class="small">Isi target dana. Isi salah satu: setoran/bulan atau durasi (bulan), atau keduanya.</p>
+
+          <form id="saveForm" class="section" style="padding:12px 0 0">
+            <label class="small"><strong>Target dana (IDR)</strong></label>
+            <input class="btn" style="width:100%; justify-content:flex-start" id="target" inputmode="numeric"
+              placeholder="contoh: 12000000" />
+
+            <div class="cols-2" style="margin-top:10px">
+              <div>
+                <label class="small"><strong>Setoran / bulan (opsional)</strong></label>
+                <input class="btn" style="width:100%; justify-content:flex-start" id="monthly" inputmode="numeric"
+                  placeholder="contoh: 1000000" />
+              </div>
+
+              <div>
+                <label class="small"><strong>Durasi (bulan, opsional)</strong></label>
+                <input class="btn" style="width:100%; justify-content:flex-start" id="months" inputmode="numeric"
+                  placeholder="contoh: 12" />
+              </div>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="submit">Hitung</button>
+              <button class="btn" type="button" onclick="addPoints(5,'Bonus praktik simulasi tabungan!')">
+                Bonus +5 poin
+              </button>
+            </div>
+          </form>
+
+          <div id="saveOut" class="section" style="padding:12px 0 0"></div>
+
+          <hr class="sep" />
+
+          <!-- ===================== STUDI KASUS ===================== -->
+          <div class="badge">🧩 <strong>Studi Kasus: “Tawaran Cepat”</strong></div>
+          <p class="small">
+            Kamu mendapat pesan: “Investasi pasti untung 30% per minggu. Transfer sekarang.”
+            Apa keputusan paling aman?
+          </p>
+
+          <div class="accordion" style="margin-top:10px">
+            <details>
+              <summary>Jawaban yang aman</summary>
+              <p class="small">
+                Tolak, verifikasi via kanal resmi, dan lakukan due diligence.
+                Janji “pasti untung besar” adalah red flag.
+              </p>
+            </details>
+
+            <details>
+              <summary>Checklist keputusan finansial</summary>
+              <ul class="small" style="margin:8px 0 0; padding-left:18px">
+                <li>Apakah penyelenggara berizin dan legal?</li>
+                <li>Apakah ada transparansi risiko & biaya?</li>
+                <li>Apakah ada tekanan waktu/urgensi?</li>
+                <li>Apakah imbal hasil realistis?</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="cols-2">
+        <div class="card pad">
+          <div class="badge">🔎 <strong>Catatan</strong> Platform ini edukatif & preventif, bukan layanan pengaduan resmi.</div>
+          <p class="small" style="margin-top:10px">
+            Untuk pelaporan dan penyelesaian pengaduan transaksi keuangan, gunakan kanal resmi yang berwenang (contoh:
+            OJK/IASC).
+          </p>
+        </div>
+
+        <div class="card pad">
+          <div class="kpi">
+            <div>
+              <div class="n" id="pointsVal">0</div>
+              <div class="lbl">Total poin</div>
+            </div>
+            <div>
+              <div class="n" id="levelVal">Beginner</div>
+              <div class="lbl">Level</div>
+            </div>
+            <div style="min-width:160px">
+              <div class="small">Kemajuan level</div>
+              <div class="progress" style="margin-top:8px">
+                <div id="levelBar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:14px">© 2025 Fin.Journey • Your Journey to Financial Intelligence</p>
+    </div>
+  </footer>
+
+  <!-- ✅ Modal Input Nama -->
+  <div id="nameModal" class="name-modal" aria-hidden="true">
+    <div class="name-modal-box">
+      <h3>👋 Halo!</h3>
+      <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+
+      <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+
+      <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+
+      <div class="name-modal-note">
+        (Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ✅ JS -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>
