@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anggota Kelompok | FinJourney</title>
+
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* === Anggota Page Style (Tambahan) === */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* ✅ Header Center Wrapper (biar simetris semua) */
+    .page-head-center {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ✅ Title benar-benar center */
+    .page-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 1000;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    /* Greeting chip */
+    .page-greeting {
+      width: fit-content;
+      padding: 8px 16px;
+      margin: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      font-size: 15px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.70);
+    }
+
+    /* Subtitle */
+    .page-subtitle {
+      text-align: center;
+      opacity: 0.85;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 0;
+      max-width: 720px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    /* ✅ Grid */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+      align-items: stretch;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ✅ Card */
+    .member-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .member-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ✅ Avatar */
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      margin-bottom: 12px;
+    }
+
+    .member-name {
+      font-size: 18px;
+      font-weight: 900;
+      margin: 0 0 10px;
+    }
+
+    /* ✅ META: Urutan Nama → NIM → Role */
+    .member-meta {
+      margin-bottom: 14px;
+    }
+
+    .member-nim {
+      font-size: 13px;
+      opacity: 0.85;
+      margin: 6px 0 10px 0;
+      font-weight: 700;
+    }
+
+    .role-wrap {
+      min-height: 44px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .member-role {
+      font-size: 14px;
+      opacity: 0.92;
+      margin: 0;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    /* ✅ Deskripsi */
+    .member-desc {
+      flex: 1;
+      font-size: 14px;
+      line-height: 1.55;
+      opacity: 0.85;
+      margin: 0 0 16px;
+      text-align: justify;
+    }
+
+    /* ✅ Links */
+    .member-links {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .member-links a {
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      padding: 12px 0;
+      border-radius: 14px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: 0.2s ease;
+      white-space: nowrap;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .member-links a:hover {
+      background: rgba(255, 255, 255, 0.10);
+      transform: translateY(-2px);
+    }
+
+    /* ✅ FIX SHADOW PUTIH SAAT KLIK */
+    .member-links a,
+    .member-links a:focus,
+    .member-links a:active,
+    .member-links a:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    /* ✅ Back button */
+    .back-btn-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .back-btn {
+      display: inline-block;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      transition: 0.2s ease;
+      font-weight: 900;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* ✅ EFEK SINAR MEWAH (lux glow) */
+    .lux-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0;
+      background:
+        radial-gradient(900px 500px at 20% 20%, rgba(0, 230, 118, 0.20), transparent 55%),
+        radial-gradient(900px 600px at 80% 15%, rgba(255, 213, 79, 0.18), transparent 60%),
+        radial-gradient(900px 600px at 45% 85%, rgba(0, 230, 118, 0.12), transparent 65%);
+      animation: glowIn 1.5s ease forwards;
+    }
+
+    @keyframes glowIn {
+      from {
+        opacity: 0;
+        transform: scale(1.08);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body data-page="team">
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="lux-glow" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="home.html" aria-label="Ke Beranda">
+          <img src="assets/logo.svg" alt="FinJourney logo" />
+        </a>
+
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-wrap">
+
+    <!-- ✅ HEADER SIMETRIS -->
+    <div class="page-head-center">
+      <h1 class="page-title">
+        <span>👥</span>
+        <span>Anggota Kelompok</span>
+      </h1>
+
+      <!-- greeting diisi app.js -->
+      <p id="greetingText" class="page-greeting"></p>
+
+      <p class="page-subtitle">
+        Tim di balik FinJourney yang berkolaborasi untuk membuat pembelajaran fintech lebih seru!
+      </p>
+    </div>
+
+    <section class="team-grid">
+
+      <!-- Anggota 1 -->
+      <article class="member-card">
+        <img class="avatar" src="assets/team/rizki.png" alt="Rizki" />
+        <h3 class="member-name">Rizki Nur Arianto</h3>
+
+        <div class="member-meta">
+          <p class="member-nim">NIM: 1705623042</p>
+          <div class="role-wrap">
+            <p class="member-role">Ketua Tim & Dokumentasi Proyek</p>
+          </div>
+        </div>
+
+        <p class="member-desc">
+          Menyusun laporan, merangkum hasil pengembangan, membantu penulisan konten website,
+          serta melakukan pengujian (testing) dan evaluasi secara keseluruhan.
+        </p>
+
+        <div class="member-links">
+          <a href="https://www.instagram.com/rizky_nuant?igsh=MjczZzNncjFkYm5y" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+          <a href="assets/cv/cv_rizki.pdf" target="_blank" rel="noopener noreferrer">
+            Curriculum Vitae
+          </a>
+        </div>
+      </article>
+
+      <!-- Anggota 2 -->
+      <article class="member-card">
+        <img class="avatar" src="assets/team/tsaqif.png" alt="Tsaqif" />
+        <h3 class="member-name">Muhammad Tsaqif N.S.</h3>
+
+        <div class="member-meta">
+          <p class="member-nim">NIM: 1705623002</p>
+          <div class="role-wrap">
+            <p class="member-role">Pembuatan Konten & Materi Edukasi</p>
+          </div>
+        </div>
+
+        <p class="member-desc">
+          Menyusun isi materi edukasi FinTech dan literasi keuangan, menulis teks pada halaman modul,
+          FAQ, serta membantu menyiapkan konten pendukung seperti ringkasan materi, tips keamanan,
+          dan informasi pelaporan.
+        </p>
+
+        <div class="member-links">
+          <a href="https://www.instagram.com/tsaqifnurz?igsh=MWIwaDltMGZ2M296bw==" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+          <a href="assets/cv/cv_tsaqif.pdf" target="_blank" rel="noopener noreferrer">
+            Curriculum Vitae
+          </a>
+        </div>
+      </article>
+
+      <!-- Anggota 3 -->
+      <article class="member-card">
+        <img class="avatar" src="assets/team/aji.png" alt="Aji" />
+        <h3 class="member-name">Aji Nur Ibrahim</h3>
+
+        <div class="member-meta">
+          <p class="member-nim">NIM: 1705623051</p>
+          <div class="role-wrap">
+            <p class="member-role">Implementasi / Coding Website</p>
+          </div>
+        </div>
+
+        <p class="member-desc">
+          Membangun struktur dan fitur website menggunakan HTML, CSS, dan JavaScript,
+          mengintegrasikan antar halaman, serta memastikan semua fungsi interaktif
+          (tools, modul, gamifikasi) berjalan dengan baik.
+        </p>
+
+        <div class="member-links">
+          <a href="https://www.instagram.com/ji.ibra___?igsh=ZzQyaXYyMXdkZTh6" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+          <a href="assets/cv/cv_aji.pdf" target="_blank" rel="noopener noreferrer">
+            Curriculum Vitae
+          </a>
+        </div>
+      </article>
+
+      <!-- Anggota 4 -->
+      <article class="member-card">
+        <img class="avatar" src="assets/team/faris.png" alt="Faris" />
+        <h3 class="member-name">Muhammad Faris</h3>
+
+        <div class="member-meta">
+          <p class="member-nim">NIM: 1705623030</p>
+          <div class="role-wrap">
+            <p class="member-role">Desain UI/UX dan Layout</p>
+          </div>
+        </div>
+
+        <p class="member-desc">
+          Merancang tampilan antarmuka (tema, warna, typography, layout),
+          membuat komponen visual seperti card, tombol, dan navbar,
+          serta memastikan desain responsif dan menarik.
+        </p>
+
+        <div class="member-links">
+          <a href="https://www.instagram.com/farisss.id?igsh=N3dwMXppd29uaG56" target="_blank" rel="noopener noreferrer">
+            Instagram
+          </a>
+          <a href="assets/cv/cv_faris.pdf" target="_blank" rel="noopener noreferrer">
+            Curriculum Vitae
+          </a>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="back-btn-wrap">
+      <a href="index.html" class="back-btn">⬅ Kembali ke Beranda</a>
+
+    </div>
+  </main>
+
+  <!-- ✅ Modal Input Nama -->
+  <div id="nameModal" class="name-modal" aria-hidden="true">
+    <div class="name-modal-box">
+      <h3>👋 Halo!</h3>
+      <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+
+      <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+      <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+
+      <div class="name-modal-note">
+        (Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

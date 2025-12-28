@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="id">
+  <body data-page="home">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | Fin.Journey</title>
+  <meta name="description" content="Fin.Journey adalah platform edukasi literasi keuangan digital: modul fintech, keamanan, regulasi, simulasi & gamifikasi."/>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- ✅ Tambahan kecil supaya pill panjang rapih (hanya untuk home) -->
+  <style>
+    .pill.wide{
+      max-width: 180px;
+      white-space: normal;
+      line-height: 1.15;
+      text-align: center;
+      padding: 8px 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Ke halaman utama">
+  <img src="assets/logo.svg" alt="Fin.Journey logo" />
+</a>
+
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div></div>
+  </header>
+
+  
+<main class="section" style="padding-top:30px">
+  <div class="container">
+    <div class="cols-2">
+      <div>
+        <div class="kicker"><span class="dot"></span> Homepage</div>
+        <h1 style="margin-top:12px">Fin.Journey</h1>
+        <p id="greetingText" class="subtitle" style="margin-top:10px; font-weight:700;"></p>
+
+        <p class="subtitle">Media edukasi literasi keuangan digital dengan pendekatan konten + simulasi + gamifikasi.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="modules.html">Mulai dari Modul →</a>
+          <a class="btn" href="tools.html">Coba Simulasi</a>
+        </div>
+        <div class="section" style="padding:18px 0 0">
+          <div class="badge">📌 <strong>Visi</strong></div>
+          <p>Memperluas pemahaman fintech, meningkatkan literasi keuangan digital, dan membangun kebiasaan finansial yang aman serta bertanggung jawab.</p>
+          <div class="badge" style="margin-top:10px">🎯 <strong>Tujuan</strong></div>
+          <p>Membantu pelajar, mahasiswa, profesional muda, UMKM, dan masyarakat umum memahami konsep fintech serta risiko & perlindungan konsumennya.</p>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <div class="badge">📈 <strong>Statistik Edukatif</strong></div>
+        <p class="small" style="margin-top:10px">
+          Angka penipuan digital dan inklusi keuangan dapat berubah dari waktu ke waktu. Gunakan halaman Keamanan untuk checklist pencegahan,
+          dan kanal resmi bila kamu membutuhkan pelaporan.
+        </p>
+        <hr class="sep"/>
+        <div class="mini-stat-grid">
+
+  <!-- ✅ Modul & Kuis -->
+  <div class="mini-stat">
+    <div class="mini-stat-left">
+      <div class="mini-stat-num">4</div>
+      <div class="mini-stat-label">Modul inti</div>
+    </div>
+
+    <div class="mini-stat-chip">
+      <span class="chip-icon">🎯</span>
+      <span class="chip-text">+ kuis</span>
+    </div>
+  </div>
+
+  <!-- ✅ Simulasi -->
+  <div class="mini-stat">
+    <div class="mini-stat-left">
+      <div class="mini-stat-num">2</div>
+      <div class="mini-stat-label">Simulasi</div>
+    </div>
+
+    <div class="mini-stat-chip">
+      <span class="chip-icon">💰</span>
+      <span class="chip-text">budgeting & tabungan</span>
+    </div>
+  </div>
+
+</div>
+
+
+        <div style="margin-top:14px">
+          <div class="small">Progress belajar (checkpoint)</div>
+          <div class="progress" style="margin-top:8px"><div id="progressBar"></div></div>
+          <div class="small" style="margin-top:6px"><span id="progressVal">0%</span> • <span id="progressMeta">0/8 checkpoint</span></div>
+        </div>
+
+        <hr class="sep"/>
+        <div class="badge">🎮 <strong>Preview Gamifikasi</strong></div>
+        <p class="small" style="margin-top:10px">Baca materi → dapat poin. Kuis → poin lebih besar. Naik level + kumpulkan badge.</p>
+        <a class="btn" href="gamification.html" style="margin-top:10px">Lihat Progress →</a>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Highlight modul pembelajaran</h2>
+      <p>Pilih jalur belajar yang sesuai kebutuhan kamu:</p>
+      <div class="cols-3" style="margin-top:12px">
+        <a class="card pad" href="modules.html#fintech">
+          <div class="badge">1️⃣ <strong>Apa Itu FinTech</strong></div>
+          <p class="small">Konsep dasar, sejarah, peran, dan dampaknya pada perilaku keuangan.</p>
+        </a>
+        <a class="card pad" href="modules.html#types">
+          <div class="badge">2️⃣ <strong>Jenis FinTech</strong></div>
+          <p class="small">Digital payment, P2P lending, bank digital, crowdfunding, InsurTech, dll.</p>
+        </a>
+        <a class="card pad" href="modules.html#security">
+          <div class="badge">3️⃣ <strong>Keamanan & Privasi</strong></div>
+          <p class="small">Phishing, scam, social engineering, serta simulasi pengenalan modus.</p>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="cols-2">
+        <div class="card pad">
+          <div class="badge">🔎 <strong>Catatan</strong> Platform ini edukatif & preventif, bukan layanan pengaduan resmi.</div>
+          <p class="small" style="margin-top:10px">
+            Untuk pelaporan dan penyelesaian pengaduan transaksi keuangan, gunakan kanal resmi yang berwenang (contoh: OJK/IASC).
+          </p>
+        </div>
+        <div class="card pad">
+          <div class="kpi">
+            <div>
+              <div class="n" id="pointsVal">0</div>
+              <div class="lbl">Total poin</div>
+            </div>
+            <div>
+              <div class="n" id="levelVal">Beginner</div>
+              <div class="lbl">Level</div>
+            </div>
+            <div style="min-width:160px">
+              <div class="small">Kemajuan level</div>
+              <div class="progress" style="margin-top:8px"><div id="levelBar"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px">© 2025 Fin.Journey • Your Journey to Financial Intelligence</p>
+    </div>
+  </footer>
+<!-- ✅ Modal Input Nama -->
+<div id="nameModal" class="name-modal" aria-hidden="true">
+  <div class="name-modal-box">
+    <h3>👋 Halo!</h3>
+    <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+
+    <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+
+    <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+
+    <div class="name-modal-note">
+      (Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)
+    </div>
+  </div>
+</div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progress | Fin.Journey</title>
+  <meta name="description"
+    content="Fin.Journey adalah platform edukasi literasi keuangan digital: modul fintech, keamanan, regulasi, simulasi & gamifikasi." />
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-page="gamification">
+
+  <!-- ✅ Background -->
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <!-- ✅ NAVBAR -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="home.html" aria-label="Ke Beranda">
+          <img src="assets/logo.svg" alt="Fin.Journey logo" />
+        </a>
+
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ MAIN -->
+  <main class="section" style="padding-top:30px">
+    <div class="container">
+
+      <div class="kicker"><span class="dot"></span> Gamifikasi & Progress</div>
+      <h1 style="margin-top:12px">Pantau kemajuan belajar kamu</h1>
+
+      <p id="greetingText" class="subtitle" style="margin-top:10px; font-weight:700;"></p>
+
+      <p class="subtitle">
+        Level, poin, badge, dan riwayat pembelajaran. Semua tersimpan di perangkat kamu.
+      </p>
+
+      <div class="cols-2">
+
+        <!-- ✅ KIRI: SUMMARY + BADGE + CHECKPOINT -->
+        <div class="card pad">
+
+          <div class="badge">🎯 <strong>Ringkasan</strong></div>
+          <hr class="sep" />
+
+          <div class="kpi">
+            <div>
+              <div class="n" id="pointsVal">0</div>
+              <div class="lbl">Total poin</div>
+            </div>
+
+            <div>
+              <div class="n" id="levelVal">Beginner</div>
+              <div class="lbl">Level</div>
+            </div>
+
+            <div style="min-width:200px">
+              <div class="small">Progress level</div>
+              <div class="progress" style="margin-top:8px">
+                <div id="levelBar"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ✅ BADGE LIST -->
+          <div class="card pad" style="margin-top:14px">
+            <div class="badge">🏅 <strong>Badge Kamu</strong></div>
+
+            <p class="small" style="margin-top:10px">
+              Badge akan terbuka otomatis jika kamu menyelesaikan modul atau kuis.
+            </p>
+
+            <div id="badgeList" style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;"></div>
+          </div>
+
+          <!-- ✅ CHECKPOINT -->
+          <div style="margin-top:16px">
+            <div class="small"><strong>Checkpoint belajar</strong></div>
+
+            <div class="progress" style="margin-top:8px">
+              <div id="progressBar"></div>
+            </div>
+
+            <div id="checkpointDots" style="display:flex; gap:6px; margin-top:10px; flex-wrap:wrap;"></div>
+
+            <div class="small" style="margin-top:8px">
+              <span id="progressVal">0%</span> • <span id="progressMeta">0/8 checkpoint</span>
+            </div>
+
+            <!-- ✅ Motivasi -->
+            <div id="progressMessage" class="notice" style="margin-top:12px"></div>
+
+            <!-- ✅ Statement Pembaca -->
+            <div id="readerStatement" class="notice" style="margin-top:12px; border-left-color:rgba(0,230,118,.8); background:rgba(0,230,118,.08)"></div>
+          </div>
+
+          <!-- ✅ ACTION -->
+          <div class="cta-row" style="margin-top:16px">
+            <a class="btn primary" href="modules.html">Lanjutkan Modul →</a>
+            <button class="btn danger" type="button" onclick="resetProgress()">Reset progress</button>
+          </div>
+
+          <p class="small" style="margin-top:10px">
+            Reset hanya menghapus data lokal Fin.Journey di browser ini.
+          </p>
+        </div>
+
+        <!-- ✅ KANAN: INFO + IDE CONTENT -->
+        <div class="card pad">
+          <div class="badge">🏅 <strong>Info Badge</strong></div>
+
+          <p class="small" style="margin-top:10px">
+            Kamu akan mendapatkan badge otomatis saat memenuhi syarat tertentu.
+          </p>
+
+          <hr class="sep" />
+
+          <div class="notice">
+            <strong>Tip:</strong> Ulangi kuis untuk meningkatkan skor dan membuka badge.
+          </div>
+
+          <!-- ✅ Isi kosong biar gak kosong banget -->
+          <div class="card pad" style="margin-top:14px">
+            <div class="badge">✨ <strong>Rekomendasi Belajar</strong></div>
+            <hr class="sep"/>
+
+<div class="badge">📊 <strong>Grafik Aktivitas</strong></div>
+<p class="small" style="margin-top:10px; opacity:.8">
+  Visual progress kamu berdasarkan modul dan kuis yang sudah diselesaikan.
+</p>
+
+<div class="chart-wrap">
+  <canvas id="activityChart" width="240" height="240"></canvas>
+
+  <div class="chart-legend">
+    <div><span class="dot mod"></span> Modul selesai</div>
+    <div><span class="dot quiz"></span> Kuis selesai</div>
+  </div>
+</div>
+
+
+            <ul class="small" style="margin-top:10px; padding-left:18px; line-height:1.7">
+              <li>Ulangi kuis dengan skor rendah untuk naik level lebih cepat</li>
+              <li>Tandai semua modul selesai untuk membuka badge terbaru</li>
+              <li>Gunakan simulasi budgeting dan tabungan untuk bonus poin</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ✅ RIWAYAT AKTIVITAS -->
+      <section class="section">
+        <h2>Riwayat aktivitas</h2>
+        <div class="card pad">
+          <table class="table">
+          <thead>
+            <tr>
+              <th>Tipe</th>
+              <th>ID</th>
+              <th>Detail</th>
+            </tr>
+          </thead>
+          <tbody id="historyBody"></tbody>
+        </table>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ✅ FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="cols-2">
+        <div class="card pad">
+          <div class="badge">🔎 <strong>Catatan</strong></div>
+          <p class="small" style="margin-top:10px">
+            Platform ini edukatif & preventif, bukan layanan pengaduan resmi.
+            Gunakan kanal resmi yang berwenang (contoh: OJK/IASC).
+          </p>
+        </div>
+
+        <div class="card pad">
+          <div class="badge"><strong>Terus belajar ya 🚀</strong></div>
+          <p class="small" style="margin-top:10px">
+            Konsistensi kecil hari ini akan jadi kebiasaan besar di masa depan.
+          </p>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:14px">
+        © 2025 Fin.Journey • Your Journey to Financial Intelligence
+      </p>
+    </div>
+  </footer>
+
+  <!-- ✅ MODAL INPUT NAMA -->
+  <div id="nameModal" class="name-modal" aria-hidden="true">
+    <div class="name-modal-box">
+      <h3>👋 Halo!</h3>
+      <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+      <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+      <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+      <div class="name-modal-note">(Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)</div>
+    </div>
+  </div>
+
+  <!-- ✅ TOAST -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ✅ app.js -->
+  <script src="js/app.js"></script>
+
+</body>
+</html>

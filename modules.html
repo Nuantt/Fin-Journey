@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modul | Fin.Journey</title>
+  <meta name="description" content="Fin.Journey adalah platform edukasi literasi keuangan digital: modul fintech, keamanan, regulasi, simulasi & gamifikasi."/>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* ✅ penting: supaya background tidak menutup klik */
+    .grid-bg, .noise{ pointer-events:none; }
+
+    /* ✅ smooth scroll + offset agar anchor gak ketutup navbar */
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top: 96px;
+    }
+
+    /* ===== TOC ===== */
+    .toc-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px){
+      .toc-grid{ grid-template-columns: 1fr; }
+    }
+    .toc-item{
+      display:flex;
+      gap: 12px;
+      align-items: center;
+      padding: 14px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      transition: .18s ease;
+      cursor:pointer;
+      position:relative;
+      z-index:2;
+    }
+    .toc-item:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,230,118,.30);
+      background: linear-gradient(90deg, rgba(0,230,118,.10), rgba(255,213,79,.06));
+    }
+    .toc-status{
+      width: 38px;
+      height: 38px;
+      display:grid;
+      place-items:center;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .toc-title{
+      font-weight: 900;
+      font-size: 15px;
+      color: var(--text);
+    }
+    .toc-sub{
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* ✅ CTA bawah modul responsive */
+    .cta-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    @media(max-width:720px){
+      .cta-actions .btn{
+        width:100%;
+        justify-content:center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="home.html" aria-label="Ke Beranda">
+          <img src="assets/logo.svg" alt="Fin.Journey logo"/>
+        </a>
+
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- ✅ MODULE PROGRESS BAR -->
+<div class="module-progress-wrap" aria-label="Progress membaca modul">
+  <div class="module-progress-bar" id="moduleProgressBar"></div>
+</div>
+
+  <main class="section" style="padding-top:30px">
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> Modul Edukasi</div>
+      <h1 style="margin-top:12px">Belajar FinTech secara terstruktur</h1>
+      <p id="greetingText" class="subtitle" style="margin-top:10px; font-weight:700;"></p>
+
+      <p class="subtitle">Setiap modul tersedia dalam format artikel, video, infografis interaktif, dan kuis.</p>
+
+      <div class="notice">
+        <strong>Tips:</strong> Setelah membaca, klik tombol “Tandai selesai” untuk mendapatkan poin. Kuis bisa diulang untuk meningkatkan skor.
+      </div>
+
+      <!-- ✅ TOC -->
+      <section class="section" style="padding-top:0">
+        <div class="card pad">
+          <div class="badge">📚 <strong>Daftar Modul</strong></div>
+          <p class="small" style="margin-top:10px">
+            Klik modul untuk membaca. Status ✅ akan muncul jika kamu sudah menandai modul selesai.
+          </p>
+
+          <div class="toc-grid">
+            <a class="toc-item" href="#fintech">
+              <span class="toc-status" id="status-fintech">⏳</span>
+              <div>
+                <div class="toc-title">Apa Itu FinTech</div>
+                <div class="toc-sub">Konsep dasar, sejarah, manfaat</div>
+              </div>
+            </a>
+
+            <a class="toc-item" href="#types">
+              <span class="toc-status" id="status-types">⏳</span>
+              <div>
+                <div class="toc-title">Jenis FinTech</div>
+                <div class="toc-sub">Payment, lending, bank digital</div>
+              </div>
+            </a>
+
+            <a class="toc-item" href="#security">
+              <span class="toc-status" id="status-security">⏳</span>
+              <div>
+                <div class="toc-title">Keamanan & Privasi</div>
+                <div class="toc-sub">Scam, phishing, perlindungan data</div>
+              </div>
+            </a>
+
+            <a class="toc-item" href="#regulation">
+              <span class="toc-status" id="status-regulation">⏳</span>
+              <div>
+                <div class="toc-title">Regulasi & Konsumen</div>
+                <div class="toc-sub">OJK, legalitas, hak konsumen</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MODUL 1 ================= -->
+      <section id="fintech" class="section">
+        <div class="cols-2">
+          <div class="card pad">
+            <div class="badge">1️⃣ <strong>Apa Itu FinTech</strong></div>
+            <p>FinTech (Financial Technology) adalah penggunaan teknologi untuk meningkatkan/otomatisasi layanan keuangan yaitu mulai dari pembayaran, pinjaman, investasi, hingga manajemen risiko.</p>
+
+            <div class="accordion" style="margin-top:12px">
+              <details open>
+                <summary>Sejarah & perkembangan singkat</summary>
+                <p class="small">Dari ATM & kartu kredit → internet banking → mobile & API → ekosistem layanan digital (e-wallet, P2P, neobank, dsb.).</p>
+              </details>
+              <details>
+                <summary>Peran dalam inklusi keuangan</summary>
+                <p class="small">FinTech membantu akses layanan (pembayaran, tabungan, pembiayaan) menjadi lebih mudah dan terjangkau.</p>
+              </details>
+              <details>
+                <summary>Dampak ke perilaku keuangan</summary>
+                <p class="small">Transaksi makin cepat & cashless, namun risiko impulsive spending dan penipuan digital juga meningkat jika tidak paham keamanan.</p>
+              </details>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="button" onclick="markRead('fintech'); updateModuleTOCStatus();">Tandai selesai (+30 poin)</button>
+              <a class="btn" href="#fintech-quiz">Ke Kuis</a>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <div class="badge">🎥 <strong>Video Edukasi</strong></div>
+            <p class="small">Placeholder video (kamu bisa ganti dengan link YouTube/Drive sekolah/kampus).</p>
+            <div style="aspect-ratio:16/9; border-radius:16px; overflow:hidden; border:1px solid var(--line); margin-top:10px">
+              <video controls preload="metadata" style="width:100%; height:100%; display:block; background:#000;">
+                <source src="assets/video/Vidio Edukasi.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p class="small" style="margin-top:10px">Jika video tidak dapat diputar (offline), kamu tetap bisa lanjut ke infografis dan kuis.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Infografis interaktif: “Apa yang berubah karena FinTech?”</h2>
+          <div class="infographic-wrapper" aria-label="Infografis interaktif">
+            <div class="infographic-card">
+              <img src="assets/image/Infografis edukasi.png" alt="Infografis Teknologi" class="infographic-img" />
+            </div>
+            <p class="infographic-note">Infografis: ringkasan visual perubahan akibat FinTech.</p>
+          </div>
+
+          <div class="cols-3" style="margin-top:12px">
+            <div class="card pad">
+              <div class="badge">⏱️ <strong>Kecepatan</strong></div>
+              <p class="small">Transfer/pembayaran instan, notifikasi real-time, rekonsiliasi cepat.</p>
+            </div>
+            <div class="card pad">
+              <div class="badge">🌍 <strong>Akses</strong></div>
+              <p class="small">Layanan keuangan lebih mudah dijangkau lewat smartphone & internet.</p>
+            </div>
+            <div class="card pad">
+              <div class="badge">🔐 <strong>Risiko baru</strong></div>
+              <p class="small">Phishing, scam, pencurian data, social engineering. Jadi, wajib paham keamanan digital.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA setelah modul -->
+        <section class="section" style="padding-top:0">
+          <div class="card pad" style="margin-top:18px">
+            <div class="badge"><strong>Sudah selesai baca?</strong></div>
+            <p class="small" style="margin-top:10px">
+              Lanjutkan belajar dengan kuis untuk menguji pemahamanmu atau coba simulasi untuk praktik langsung.
+            </p>
+            <div class="cta-actions" style="margin-top:12px">
+              <button class="btn primary" type="button" onclick="markRead('fintech'); updateModuleTOCStatus();">Tandai sudah baca ✓</button>
+              <a class="btn" href="gamification.html">Lihat Progress →</a>
+              <a class="btn" href="tools.html">Coba Simulasi →</a>
+            </div>
+          </div>
+        </section>
+
+        <div id="fintech-quiz" class="section card pad">
+          <div class="badge">🧩 <strong>Kuis: Dasar FinTech</strong></div>
+          <p class="small">Jawab 4 pertanyaan berikut.</p>
+
+          <form id="fintechQuiz" class="quiz" action="javascript:void(0);">
+            <div class="q">
+              <strong>1) FinTech paling tepat didefinisikan sebagai…</strong>
+              <label><input type="radio" name="q1" value="a"> Aplikasi chat untuk komunikasi tim</label>
+              <label><input type="radio" name="q1" value="b"> Penggunaan teknologi untuk meningkatkan layanan keuangan</label>
+              <label><input type="radio" name="q1" value="c"> Permainan online berbasis poin</label>
+            </div>
+            <div class="q">
+              <strong>2) Salah satu kontribusi FinTech terhadap inklusi keuangan adalah…</strong>
+              <label><input type="radio" name="q2" value="a"> Membuat layanan keuangan lebih mudah diakses lewat digital</label>
+              <label><input type="radio" name="q2" value="b"> Membatasi akses pinjaman untuk semua orang</label>
+              <label><input type="radio" name="q2" value="c"> Menghapus kebutuhan keamanan data</label>
+            </div>
+            <div class="q">
+              <strong>3) Contoh perubahan perilaku akibat FinTech adalah…</strong>
+              <label><input type="radio" name="q3" value="a"> Transaksi cashless meningkat</label>
+              <label><input type="radio" name="q3" value="b"> Internet tidak lagi diperlukan</label>
+              <label><input type="radio" name="q3" value="c"> Risiko penipuan digital hilang total</label>
+            </div>
+            <div class="q">
+              <strong>4) Risiko baru yang perlu diwaspadai dalam FinTech adalah…</strong>
+              <label><input type="radio" name="q4" value="a"> Cuaca hujan</label>
+              <label><input type="radio" name="q4" value="b"> Phishing & social engineering</label>
+              <label><input type="radio" name="q4" value="c"> Kertas habis</label>
+            </div>
+
+            <div class="cta-row">
+              <button class="btn primary" type="submit">Kirim jawaban</button>
+              <button class="btn" type="button" onclick="addPoints(5,'Terima kasih sudah belajar hari ini!')">Bonus +5 poin</button>
+            </div>
+            <div class="small" data-quiz-result></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= MODUL 2 ================= -->
+      <section id="types" class="section">
+        <div class="cols-2">
+          <div class="card pad">
+            <div class="badge">2️⃣ <strong>Jenis-Jenis FinTech & Contohnya</strong></div>
+            <p>FinTech hadir dalam berbagai bentuk. Memahami kategorinya membantu kamu memilih layanan yang tepat dan mengecek legalitasnya.</p>
+
+            <div class="accordion" style="margin-top:12px">
+              <details open>
+                <summary>Digital Payment & E-Wallet</summary>
+                <p class="small">Pembayaran digital untuk transaksi harian (QR, transfer, top-up). Contoh: e-wallet, payment gateway.</p>
+              </details>
+              <details>
+                <summary>P2P Lending</summary>
+                <p class="small">Mempertemukan pemberi pinjaman dan peminjam secara online. Waspadai bunga/biaya & pastikan berizin.</p>
+              </details>
+              <details>
+                <summary>Digital Banking / Neobank</summary>
+                <p class="small">Layanan perbankan melalui aplikasi—pembukaan rekening, kartu, transaksi, dan produk tabungan/investasi.</p>
+              </details>
+              <details>
+                <summary>Crowdfunding</summary>
+                <p class="small">Pendanaan bersama untuk proyek/usaha. Pahami risikonya dan verifikasi penyelenggara.</p>
+              </details>
+              <details>
+                <summary>InsurTech • WealthTech • RegTech</summary>
+                <p class="small">Teknologi asuransi, investasi, serta kepatuhan regulasi (KYC/AML, pelaporan, dsb.).</p>
+              </details>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="button" onclick="markRead('types'); updateModuleTOCStatus();">Tandai selesai (+30 poin)</button>
+              <a class="btn" href="#types-quiz">Ke Kuis</a>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <div class="badge">🧪 <strong>Simulasi sederhana</strong></div>
+            <p class="small">Pilih kategori layanan, lalu lihat “cek cepat” yang perlu kamu perhatikan.</p>
+            <div class="section" style="padding:12px 0 0">
+              <label class="small" for="typePick"><strong>Kategori</strong></label>
+              <select id="typePick" class="btn" style="width:100%; justify-content:flex-start">
+                <option value="pay">Digital Payment / E-Wallet</option>
+                <option value="p2p">P2P Lending</option>
+                <option value="bank">Digital Banking</option>
+                <option value="crowd">Crowdfunding</option>
+                <option value="other">InsurTech / WealthTech / RegTech</option>
+              </select>
+              <div id="typeOut" class="notice" style="margin-top:12px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="types-quiz" class="section card pad">
+          <div class="badge">🧩 <strong>Kuis: Jenis FinTech</strong></div>
+          <p class="small">Jawab 4 pertanyaan berikut.</p>
+
+          <form id="typesQuiz" class="quiz" action="javascript:void(0);">
+            <div class="q">
+              <strong>1) Layanan QR & e-wallet termasuk kategori…</strong>
+              <label><input type="radio" name="q1" value="a"> Crowdfunding</label>
+              <label><input type="radio" name="q1" value="b"> Digital Payment</label>
+              <label><input type="radio" name="q1" value="c"> RegTech</label>
+            </div>
+            <div class="q">
+              <strong>2) P2P Lending berfungsi utama untuk…</strong>
+              <label><input type="radio" name="q2" value="a"> Mempertemukan pemberi pinjaman dan peminjam</label>
+              <label><input type="radio" name="q2" value="b"> Mengganti password email</label>
+              <label><input type="radio" name="q2" value="c"> Membuat desain poster</label>
+            </div>
+            <div class="q">
+              <strong>3) WealthTech biasanya berkaitan dengan…</strong>
+              <label><input type="radio" name="q3" value="a"> Investasi & pengelolaan aset</label>
+              <label><input type="radio" name="q3" value="b"> Cuaca dan iklim</label>
+              <label><input type="radio" name="q3" value="c"> Pengiriman makanan</label>
+            </div>
+            <div class="q">
+              <strong>4) Mengapa penting memahami kategori FinTech?</strong>
+              <label><input type="radio" name="q4" value="a"> Agar bisa menghindari risiko dan memilih layanan yang tepat</label>
+              <label><input type="radio" name="q4" value="b"> Karena semua layanan pasti aman tanpa pengecekan</label>
+              <label><input type="radio" name="q4" value="c"> Karena tidak ada regulasi sama sekali</label>
+            </div>
+
+            <div class="cta-row">
+              <button class="btn primary" type="submit">Kirim jawaban</button>
+            </div>
+            <div class="small" data-quiz-result></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= MODUL 3 ================= -->
+      <section id="security" class="section">
+        <div class="cols-2">
+          <div class="card pad">
+            <div class="badge">3️⃣ <strong>Keamanan Digital & Privasi</strong></div>
+            <p>Keamanan digital adalah fondasi literasi fintech. Pahami perlindungan data pribadi dan modus penipuan agar transaksi lebih aman.</p>
+
+            <div class="accordion" style="margin-top:12px">
+              <details open>
+                <summary>Perlindungan data pribadi</summary>
+                <p class="small">Gunakan password kuat, MFA/2FA, jangan membagikan OTP/PIN, dan batasi akses aplikasi ke kontak/galeri bila tidak perlu.</p>
+              </details>
+              <details>
+                <summary>Phishing, scam, social engineering</summary>
+                <p class="small">Modus mengelabui korban untuk memberikan data/OTP, klik tautan palsu, atau transfer ke rekening tertentu.</p>
+              </details>
+              <details>
+                <summary>Tips aman bertransaksi online</summary>
+                <p class="small">Cek URL & ejaan, gunakan aplikasi resmi, update sistem, dan verifikasi informasi via kanal resmi.</p>
+              </details>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="button" onclick="markRead('security'); updateModuleTOCStatus();">Tandai selesai (+30 poin)</button>
+              <a class="btn" href="#security-sim">Ke Simulasi Modus</a>
+            </div>
+          </div>
+
+          <div id="security-sim" class="card pad">
+            <div class="badge">🕵️ <strong>Simulasi: Kenali Modus</strong></div>
+            <p class="small">Pilih contoh pesan. Tentukan apakah ini aman atau indikasi penipuan.</p>
+
+            <div class="accordion" style="margin-top:10px">
+              <details open>
+                <summary>Pesan 1: “Akun kamu diblokir. Klik link ini untuk verifikasi sekarang.”</summary>
+                <p class="small"><strong>Indikasi:</strong> Urgensi berlebihan + link. <strong>Aksi:</strong> Jangan klik. Cek langsung via aplikasi/website resmi.</p>
+              </details>
+              <details>
+                <summary>Pesan 2: “Kirim OTP ke saya agar proses refund lancar.”</summary>
+                <p class="small"><strong>Indikasi:</strong> Meminta OTP/PIN. <strong>Aksi:</strong> Tolak. OTP adalah rahasia—tidak boleh dibagikan.</p>
+              </details>
+              <details>
+                <summary>Pesan 3: “Promo cashback besar. Transfer dulu agar dapat hadiah.”</summary>
+                <p class="small"><strong>Indikasi:</strong> Skema bayar dulu. <strong>Aksi:</strong> Waspada. Verifikasi promo via kanal resmi.</p>
+              </details>
+            </div>
+
+            <div class="notice" style="margin-top:12px">
+              <strong>Prinsip:</strong> Jika ada permintaan data rahasia atau transfer mendesak, anggap itu “red flag” sampai terbukti aman.
+            </div>
+          </div>
+        </div>
+
+        <div id="security-quiz" class="section card pad">
+          <div class="badge">🧩 <strong>Kuis: Keamanan Digital</strong></div>
+          <p class="small">Jawab 4 pertanyaan berikut.</p>
+
+          <form id="securityQuiz" class="quiz" action="javascript:void(0);">
+            <div class="q">
+              <strong>1) OTP sebaiknya…</strong>
+              <label><input type="radio" name="q1" value="a"> Dibagikan ke customer service lewat chat</label>
+              <label><input type="radio" name="q1" value="b"> Disimpan rahasia dan tidak dibagikan ke siapa pun</label>
+              <label><input type="radio" name="q1" value="c"> Diposting di media sosial</label>
+            </div>
+            <div class="q">
+              <strong>2) Phishing biasanya dilakukan dengan…</strong>
+              <label><input type="radio" name="q2" value="a"> Link/halaman palsu untuk mencuri data</label>
+              <label><input type="radio" name="q2" value="b"> Latihan olahraga</label>
+              <label><input type="radio" name="q2" value="c"> Menanam pohon</label>
+            </div>
+            <div class="q">
+              <strong>3) Social engineering adalah…</strong>
+              <label><input type="radio" name="q3" value="a"> Mengelabui korban melalui manipulasi psikologis</label>
+              <label><input type="radio" name="q3" value="b"> Memperbaiki kabel jaringan</label>
+              <label><input type="radio" name="q3" value="c"> Mengatur jadwal rapat</label>
+            </div>
+            <div class="q">
+              <strong>4) Praktik aman bertransaksi adalah…</strong>
+              <label><input type="radio" name="q4" value="a"> Mengklik semua link promo</label>
+              <label><input type="radio" name="q4" value="b"> Verifikasi via kanal resmi dan gunakan MFA</label>
+              <label><input type="radio" name="q4" value="c"> Memberi PIN ke teman dekat</label>
+            </div>
+
+            <div class="cta-row">
+              <button class="btn primary" type="submit">Kirim jawaban</button>
+            </div>
+            <div class="small" data-quiz-result></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= MODUL 4 ================= -->
+      <section id="regulation" class="section">
+        <div class="cols-2">
+          <div class="card pad">
+            <div class="badge">4️⃣ <strong>Regulasi & Perlindungan Konsumen</strong></div>
+            <p>Regulasi bertujuan melindungi konsumen dan memastikan penyelenggara fintech mematuhi standar. Kenali hak & kewajiban agar tidak mudah tertipu.</p>
+
+            <div class="accordion" style="margin-top:12px">
+              <details open>
+                <summary>Peran OJK</summary>
+                <p class="small">OJK berperan mengawasi sektor jasa keuangan. Untuk edukasi dan pelaporan, gunakan kanal resmi yang tersedia.</p>
+              </details>
+              <details>
+                <summary>Hak & kewajiban konsumen</summary>
+                <p class="small">Hak: informasi jelas, perlindungan data, mekanisme pengaduan. Kewajiban: menjaga data rahasia, membaca syarat, dan transaksi secara wajar.</p>
+              </details>
+              <details>
+                <summary>Jalur pengaduan resmi</summary>
+                <p class="small">Jika kamu korban penipuan transaksi keuangan, gunakan pusat pelaporan resmi yang relevan.</p>
+              </details>
+            </div>
+
+            <div class="cta-row" style="margin-top:12px">
+              <button class="btn primary" type="button" onclick="markRead('regulation'); updateModuleTOCStatus();">Tandai selesai (+30 poin)</button>
+              <a class="btn" href="security.html">Ke Halaman Pelaporan</a>
+            </div>
+          </div>
+
+          <div class="card pad">
+            <div class="badge">🔗 <strong>Link Resmi Pengaduan</strong></div>
+            <p class="small">Pusat pelaporan dan penyelesaian pengaduan transaksi keuangan (IASC OJK):</p>
+            <a class="btn primary" href="https://iasc.ojk.go.id/" target="_blank" rel="noopener">Buka iasc.ojk.go.id →</a>
+
+            <hr class="sep"/>
+            <div class="notice">
+              <strong>Ringkas:</strong> Kumpulkan bukti (screenshot, kronologi, rekening/nomor tujuan), lalu lakukan pelaporan melalui kanal resmi.
+            </div>
+          </div>
+        </div>
+
+        <div id="regulation-quiz" class="section card pad">
+          <div class="badge">🧩 <strong>Kuis: Regulasi & Perlindungan Konsumen</strong></div>
+          <p class="small">Jawab 4 pertanyaan berikut.</p>
+
+          <form id="regulationQuiz" class="quiz" action="javascript:void(0);">
+            <div class="q">
+              <strong>1) Salah satu tujuan regulasi fintech adalah…</strong>
+              <label><input type="radio" name="q1" value="a"> Melindungi konsumen dan menjaga kepatuhan</label>
+              <label><input type="radio" name="q1" value="b"> Meningkatkan penipuan online</label>
+              <label><input type="radio" name="q1" value="c"> Menghapus kebutuhan informasi produk</label>
+            </div>
+            <div class="q">
+              <strong>2) Hak konsumen fintech mencakup…</strong>
+              <label><input type="radio" name="q2" value="a"> Informasi yang jelas dan perlindungan data</label>
+              <label><input type="radio" name="q2" value="b"> Membagikan OTP ke siapa saja</label>
+              <label><input type="radio" name="q2" value="c"> Transaksi tanpa persetujuan</label>
+            </div>
+            <div class="q">
+              <strong>3) Ketika menjadi korban penipuan, langkah yang tepat adalah…</strong>
+              <label><input type="radio" name="q3" value="a"> Menyebarkan OTP agar cepat selesai</label>
+              <label><input type="radio" name="q3" value="b"> Mengumpulkan bukti dan melapor melalui kanal resmi</label>
+              <label><input type="radio" name="q3" value="c"> Mengirim uang tambahan untuk “verifikasi”</label>
+            </div>
+            <div class="q">
+              <strong>4) OJK berperan dalam…</strong>
+              <label><input type="radio" name="q4" value="a"> Pengawasan sektor jasa keuangan</label>
+              <label><input type="radio" name="q4" value="b"> Mengatur cuaca</label>
+              <label><input type="radio" name="q4" value="c"> Mengubah jam sekolah</label>
+            </div>
+
+            <div class="cta-row">
+              <button class="btn primary" type="submit">Kirim jawaban</button>
+            </div>
+            <div class="small" data-quiz-result></div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="cols-2">
+        <div class="card pad">
+          <div class="badge">🔎 <strong>Catatan</strong> Platform ini edukatif & preventif, bukan layanan pengaduan resmi.</div>
+          <p class="small" style="margin-top:10px">
+            Untuk pelaporan dan penyelesaian pengaduan transaksi keuangan, gunakan kanal resmi yang berwenang (contoh: OJK/IASC).
+          </p>
+        </div>
+        <div class="card pad">
+          <div class="kpi">
+            <div>
+              <div class="n" id="pointsVal">0</div>
+              <div class="lbl">Total poin</div>
+            </div>
+            <div>
+              <div class="n" id="levelVal">Beginner</div>
+              <div class="lbl">Level</div>
+            </div>
+            <div style="min-width:160px">
+              <div class="small">Kemajuan level</div>
+              <div class="progress" style="margin-top:8px"><div id="levelBar"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px">© 2025 Fin.Journey • Your Journey to Financial Intelligence</p>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- ✅ app.js dulu -->
+  <script src="js/app.js"></script>
+
+  <script>
+    /* ✅ status toc update */
+    function updateModuleTOCStatus(){
+      const s = (typeof loadState === "function") ? loadState() : null;
+      if(!s) return;
+
+      const map = ["fintech","types","security","regulation"];
+      map.forEach(id=>{
+        const el = document.getElementById("status-"+id);
+        if(!el) return;
+        el.textContent = s.reads?.[id] ? "✅" : "⏳";
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", ()=>{
+      /* ✅ update status toc pertama kali */
+      updateModuleTOCStatus();
+
+      /* ✅ simulasi modul 2 */
+      const tips = {
+        pay: ["Aktifkan PIN/biometrik", "Jangan bagikan OTP", "Cek merchant/QR", "Batasi saldo untuk harian"],
+        p2p: ["Cek legalitas & izin", "Pahami bunga/biaya & tenor", "Hindari akses kontak berlebihan", "Waspadai penagihan tidak etis"],
+        bank: ["Gunakan perangkat tepercaya", "Aktifkan notifikasi transaksi", "Cek keamanan (https, app resmi)", "Batasi info pribadi di publik"],
+        crowd: ["Baca skema imbal hasil/risiko", "Verifikasi penyelenggara", "Cek transparansi proyek", "Jangan tergiur janji pasti"],
+        other: ["Pahami produk & biaya", "Cek kebijakan data", "Gunakan MFA", "Baca syarat & ketentuan"]
+      };
+      const sel = document.getElementById("typePick");
+      const out = document.getElementById("typeOut");
+      function render(){
+        if(!sel || !out) return;
+        const k = sel.value;
+        out.innerHTML = "<strong>Cek cepat:</strong><ul style='margin:8px 0 0; padding-left:18px'>" +
+          tips[k].map(t=>"<li class='small'>"+t+"</li>").join("") + "</ul>";
+      }
+      if(sel) sel.addEventListener("change", render);
+      render();
+
+      /* ✅ wire quiz */
+      wireQuiz("fintechQuiz","fintech_quiz",{q1:"b", q2:"a", q3:"a", q4:"b"});
+      wireQuiz("typesQuiz","types_quiz",{q1:"b", q2:"a", q3:"a", q4:"a"});
+      wireQuiz("securityQuiz","security_quiz",{q1:"b", q2:"a", q3:"a", q4:"b"});
+      wireQuiz("regulationQuiz","regulation_quiz",{q1:"a", q2:"a", q3:"b", q4:"a"});
+    });
+  </script>
+<div id="scrollProgress"></div>
+
+<button id="backToTop" aria-label="Kembali ke atas">
+  <span class="arrow" aria-hidden="true">
+    <!-- ✅ SVG panah putih, tidak bulet, lonjong horizontal -->
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+      <path d="M12 5l-5 5m5-5l5 5M12 5v14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+  <span class="txt">Keatas</span>
+</button>
+
+<!-- ✅ Modal Input Nama -->
+<div id="nameModal" class="name-modal" aria-hidden="true">
+  <div class="name-modal-box">
+    <h3>👋 Halo!</h3>
+    <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+
+    <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+
+    <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+
+    <div class="name-modal-note">
+      (Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

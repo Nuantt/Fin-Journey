@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="id">
+  <body data-page="progress">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landing | Fin.Journey</title>
+  <meta name="description" content="Fin.Journey adalah platform edukasi literasi keuangan digital: modul fintech, keamanan, regulasi, simulasi & gamifikasi."/>
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml"/>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="grid-bg" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="home.html" aria-label="Ke Beranda">
+          <img src="assets/logo.svg" alt="Fin.Journey logo"/>
+        </a>
+        <nav class="navlinks" aria-label="Navigasi utama">
+          <a data-nav href="home.html">Home</a>
+          <a data-nav href="modules.html">Modul</a>
+          <a data-nav href="tools.html">Simulasi & Tools</a>
+          <a data-nav href="gamification.html">Progress</a>
+          <a data-nav href="security.html">Keamanan & Pelaporan</a>
+          <a data-nav href="about.html">Tentang</a>
+          <a data-nav href="anggota.html">Team</a>
+          <a data-nav href="faq.html">FAQ</a>
+        </nav>
+        <div class="mobile-toggle">
+          <button id="mobileBtn" aria-label="Buka menu">☰ Menu</button>
+        </div>
+      </div></div>
+  </header>
+
+  
+<main class="hero">
+  <div class="container">
+    <div class="wrap">
+      <div>
+        <div class="kicker"><span class="dot"></span> Platform edukasi FinTech & literasi keuangan digital</div>
+        <h1>Your Journey to<br/>Financial Intelligence</h1>
+        <p id="greetingText" class="subtitle" style="margin-top:10px; font-weight:700;"></p>
+
+        <p class="subtitle">
+          Fin.Journey menggabungkan modul edukasi, simulasi interaktif, perencanaan keuangan personal, dan gamifikasi
+          untuk membantu kamu memahami FinTech dengan cara yang modern, aplikatif, dan aman.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="home.html">Mulai Perjalanan Finansial →</a>
+          <a class="btn" href="modules.html">Lihat Modul</a>
+          <a class="btn danger" href="security.html">Cek Keamanan & Pelaporan</a>
+        </div>
+        <div style="margin-top:16px" class="pill">⚡ Mobile-first • Ringan • Tanpa login • Data tersimpan lokal</div>
+      </div>
+      <div class="card pad">
+        <div class="badge">✨ <strong>Fitur Utama</strong></div>
+        <hr class="sep"/>
+        <div class="accordion">
+          <details open>
+            <summary>Modul edukasi multi-format</summary>
+            <p class="small">Artikel, video edukasi, infografis interaktif, serta kuis di akhir materi.</p>
+          </details>
+          <details>
+            <summary>Simulasi budgeting & tabungan</summary>
+            <p class="small">Coba kalkulator sederhana untuk menyusun alokasi keuangan bulanan.</p>
+          </details>
+          <details>
+            <summary>Gamifikasi & progress tracker</summary>
+            <p class="small">Poin, level, badge, dan riwayat pembelajaran untuk memotivasi belajar.</p>
+          </details>
+          <details>
+            <summary>Keamanan & jalur pelaporan resmi</summary>
+            <p class="small">Edukasi pencegahan penipuan + tautan ke kanal resmi OJK/IASC.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<section class="section">
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <!-- CARD 1 -->
+      <div class="stats-card">
+        <div class="stats-left">
+          <div class="stats-num">4</div>
+          <div class="stats-label">Modul inti</div>
+        </div>
+
+        <div class="stats-chip">+ kuis</div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="stats-card">
+        <div class="stats-left">
+          <div class="stats-num">2</div>
+          <div class="stats-label">Simulasi</div>
+        </div>
+
+        <div class="stats-chip">budgeting & tabungan</div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="cols-2">
+        <div class="card pad">
+          <div class="badge">🔎 <strong>Catatan</strong> Platform ini edukatif & preventif, bukan layanan pengaduan resmi.</div>
+          <p class="small" style="margin-top:10px">
+            Untuk pelaporan dan penyelesaian pengaduan transaksi keuangan, gunakan kanal resmi yang berwenang (contoh: OJK/IASC).
+          </p>
+        </div>
+        <div class="card pad">
+          <div class="kpi">
+            <div>
+              <div class="n" id="pointsVal">0</div>
+              <div class="lbl">Total poin</div>
+            </div>
+            <div>
+              <div class="n" id="levelVal">Beginner</div>
+              <div class="lbl">Level</div>
+            </div>
+            <div style="min-width:160px">
+              <div class="small">Kemajuan level</div>
+              <div class="progress" style="margin-top:8px"><div id="levelBar"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="small" style="margin-top:14px">© 2025 Fin.Journey • Your Journey to Financial Intelligence</p>
+    </div>
+  </footer>
+<!-- ✅ Modal Input Nama -->
+<div id="nameModal" class="name-modal" aria-hidden="true">
+  <div class="name-modal-box">
+    <h3>👋 Halo!</h3>
+    <p>Sebelum mulai, tulis nama panggilanmu ya 😊</p>
+
+    <input id="nameInput" placeholder="Contoh: Rizki / Aji / Bro" />
+
+    <button id="saveNameBtn" class="btn primary">Mulai Belajar 🚀</button>
+
+    <div class="name-modal-note">
+      (Nama ini bebas, bisa samaran, dan tersimpan di perangkat kamu)
+    </div>
+  </div>
+</div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
